@@ -10,8 +10,8 @@ from typing import Sequence
 
 
 def check_fibonacci(data: Sequence[int]) -> bool:
-    fib = len(data) >= 3
-    if fib:
+    is_fib = len(data) >= 3
+    if is_fib:
         for i in range(len(data) - 2):
             if (data[i] + data[i + 1]) != data[i + 2]:
                 is_fib = False
