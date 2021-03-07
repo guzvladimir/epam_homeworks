@@ -11,9 +11,9 @@ from typing import List
 
 
 def check_sum_of_four(a: List[int], b: List[int], c: List[int], d: List[int]) -> int:
-    lst = list(product(a, b, c, d))
-    answ = 0
-    for i in lst:
-        if sum(i[0:4]) == 0:
-            answ += 1
-    return answ
+    lists_product = list(product(a, b, c, d))
+    result = 0
+    for i in lists_product:
+        if sum(i) == 0:
+            result += 1
+    return result
