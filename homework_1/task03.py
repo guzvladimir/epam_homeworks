@@ -22,6 +22,3 @@ def find_maximum_and_minimum(file_name: str) -> Tuple[int, int]:
         for line in fi:
             numbers.append(int(line))
     return min(numbers), max(numbers)
-
-
-print(find_maximum_and_minimum("some_file.txt"))

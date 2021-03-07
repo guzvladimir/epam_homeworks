@@ -14,6 +14,6 @@ def check_fibonacci(data: Sequence[int]) -> bool:
     if fib:
         for i in range(len(data) - 2):
             if (data[i] + data[i + 1]) != data[i + 2]:
-                fib = False
+                is_fib = False
                 break
-    return fib
+    return is_fib
