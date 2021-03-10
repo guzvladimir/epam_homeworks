@@ -12,49 +12,49 @@ from collections import defaultdict
 from typing import List
 
 
-def get_longest_diverse_words(file_path: str) -> List[str]:
+def read_file(file_path: str) -> str:
     with open(file_path, "r") as data:
-        text = bytes(data.read(), "ascii").decode("unicode-escape")
-        text = "".join(char for char in text if char not in set(string.punctuation))
-        word_list = text.split()
-        word_list = sorted(word_list, key=lambda x: (-len(set(x)), -len(x)))
+        return bytes(data.read(), "ascii").decode("unicode-escape")
+
+
+def get_longest_diverse_words(file_path: str) -> List[str]:
+    text = read_file(file_path)
+    text = "".join(char for char in text if char not in set(string.punctuation))
+    word_list = text.split()
+    word_list = sorted(word_list, key=lambda x: (-len(set(x)), -len(x)))
     return word_list[:10]
 
 
 def get_rarest_char(file_path: str) -> str:
     dict_char = defaultdict(int)
-    with open(file_path, "r") as data:
-        text = bytes(data.read(), "ascii").decode("unicode-escape")
-        for symbol in text:
-            dict_char[symbol] += 1
+    text = read_file(file_path)
+    for symbol in text:
+        dict_char[symbol] += 1
     return min(dict_char, key=dict_char.get)
 
 
 def count_punctuation_chars(file_path: str) -> int:
-    char = 0
-    with open(file_path, "r") as data:
-        text = bytes(data.read(), "ascii").decode("unicode-escape")
-        for chars in text:
-            if chars in string.punctuation:
-                char += 1
-    return char
+    count_punctuation_char = 0
+    text = read_file(file_path)
+    for chars in text:
+        if chars in string.punctuation:
+            count_punctuation_char += 1
+    return count_punctuation_char
 
 
 def count_non_ascii_chars(file_path: str) -> int:
-    non_ascii = 0
-    with open(file_path, "r") as data:
-        text = bytes(data.read(), "ascii").decode("unicode-escape")
-        for char in text:
-            if ord(char) > 128:
-                non_ascii += 1
-    return non_ascii
+    count_non_ascii_char = 0
+    text = read_file(file_path)
+    for non_ascii_char in text:
+        if ord(non_ascii_char) > 128:
+            count_non_ascii_char += 1
+    return count_non_ascii_char
 
 
 def get_most_common_non_ascii_char(file_path: str) -> str:
-    dict_ascii_char = defaultdict(int)
-    with open(file_path, "r") as data:
-        text = bytes(data.read(), "ascii").decode("unicode-escape")
-        for symbol in text:
-            if ord(symbol) > 128:
-                dict_ascii_char[symbol] += 1
-    return max(dict_ascii_char, key=dict_ascii_char.get)
+    dict_non_ascii_char = defaultdict(int)
+    text = read_file(file_path)
+    for non_ascii_char in text:
+        if ord(non_ascii_char) > 128:
+            dict_non_ascii_char[non_ascii_char] += 1
+    return max(dict_non_ascii_char, key=dict_non_ascii_char.get)

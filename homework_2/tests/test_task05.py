@@ -1,7 +1,7 @@
 from typing import Any, List
 
 import pytest
-from task05 import custom_range
+from task05.task05 import custom_range
 
 
 @pytest.mark.parametrize(

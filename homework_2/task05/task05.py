@@ -19,10 +19,9 @@ from typing import Any, List
 
 def custom_range(iterable_values: str, *args: Any) -> List[Any]:
     keys = slice(*args)
+    start = 0
     if keys.start:
         start = iterable_values.index(keys.start)
-    else:
-        start = 0
     stop = iterable_values.index(keys.stop)
     step = keys.step or 1
     sequence = iterable_values[start:stop:step]

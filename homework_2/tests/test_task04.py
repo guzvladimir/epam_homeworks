@@ -2,7 +2,7 @@ from collections.abc import Callable
 from typing import Tuple
 
 import pytest
-from task04 import cache
+from task04.task04 import cache
 
 
 @pytest.mark.parametrize(
