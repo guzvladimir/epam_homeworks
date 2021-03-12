@@ -12,11 +12,11 @@ def cache(times: int) -> Callable:
                 times_counter -= 1
 
                 return result
-            else:
-                result = func(*args)
-                times_counter = times
 
-                return result
+            result = func(*args)
+            times_counter = times
+
+            return result
 
         return wrapper
 
