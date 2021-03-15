@@ -40,7 +40,3 @@ def test_fizzbuzz(value: int, expected_result: List[str]):
 def test_fizzbuzz_is_generator():
     actual_result = fizzbuzz(5)
     assert isinstance(actual_result, types.GeneratorType)
-
-
-def test_fizzbuzz_gen():
-    assert list(fizzbuzz(5)) == ["1", "2", "fizz", "4", "buzz"]
