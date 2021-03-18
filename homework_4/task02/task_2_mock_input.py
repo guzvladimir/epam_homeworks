@@ -29,13 +29,9 @@ import urllib.request
 
 
 def count_dots_on_i(url: str) -> int:
-    count_i = 0
+    response = urllib.request.urlopen(url)
+    html = response.read().decode("utf-8")
     try:
-        response = urllib.request.urlopen(url)
-        html = response.read().decode("utf-8")
-        for letter in html:
-            if letter == "i":
-                count_i += 1
-        return count_i
+        return html.count("i")
     except:
         raise ValueError(f"Unreachable {url}")
