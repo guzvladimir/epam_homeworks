@@ -29,8 +29,7 @@ You will learn:
 def read_magic_number(path: str) -> bool:
     with open(path, "r") as file_path:
         first_line = file_path.readline()
-        number_in_line = float(first_line)
     try:
-        return 1 <= number_in_line < 3
+        return 1 <= float(first_line) < 3
     except Exception:
         raise ValueError
