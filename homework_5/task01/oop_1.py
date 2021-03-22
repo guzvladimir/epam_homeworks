@@ -38,6 +38,7 @@ PEP8 соблюдать строго.
 давать логичные подходящие имена.
 """
 from datetime import datetime, timedelta
+from typing import Optional
 
 
 class Homework:
@@ -56,7 +57,7 @@ class Student:
         self.first_name = first_name
         self.last_name = last_name
 
-    def do_homework(self, homework: Homework) -> Homework:
+    def do_homework(self, homework: Homework) -> Optional[Homework]:
         if homework.is_active():
             return homework
         print("You are late")
@@ -68,7 +69,8 @@ class Teacher:
         self.last_name = last_name
         self._first_name = first_name
 
-    def create_homework(self, text: str, deadline: int) -> Homework:
+    @staticmethod
+    def create_homework(text: str, deadline: int) -> Homework:
         return Homework(text, deadline)
 
 
