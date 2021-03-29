@@ -54,7 +54,7 @@ from datetime import datetime, timedelta
 from typing import Optional, Union
 
 
-class FullNameCreate:
+class Person:
     def __init__(self, first_name: str, last_name: str):
         self.first_name = first_name
         self.last_name = last_name
@@ -85,7 +85,7 @@ class HomeworkResult:
         self.created = datetime.today()
 
 
-class Student(FullNameCreate):
+class Student(Person):
     @staticmethod
     def do_homework(
         homework: Homework, solution: str
@@ -95,7 +95,7 @@ class Student(FullNameCreate):
         return HomeworkResult(homework, solution)
 
 
-class Teacher(FullNameCreate):
+class Teacher(Person):
     homework_done = defaultdict(set)
 
     def check_homework(self, homework_result: HomeworkResult) -> bool:
