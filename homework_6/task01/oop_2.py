@@ -75,24 +75,23 @@ class Homework:
         return difference_time < self.deadline
 
 
+class Student(Person):
+    def do_homework(
+        self, homework: Homework, solution: str
+    ) -> Union[HomeworkResult, DeadlineError]:
+        if not homework.is_active():
+            raise DeadlineError("You are late")
+        return HomeworkResult(homework, solution, author=self)
+
+
 class HomeworkResult:
-    def __init__(self, homework: Homework, solution: str):
+    def __init__(self, homework: Homework, solution: str, author: Student):
         if not isinstance(homework, Homework):
             raise TypeError("You gave a not Homework object.")
         self.homework = homework
         self.solution = solution
-        self.author = Student
+        self.author = author
         self.created = datetime.today()
-
-
-class Student(Person):
-    @staticmethod
-    def do_homework(
-        homework: Homework, solution: str
-    ) -> Union[HomeworkResult, DeadlineError]:
-        if not homework.is_active():
-            raise DeadlineError("You are late")
-        return HomeworkResult(homework, solution)
 
 
 class Teacher(Person):
