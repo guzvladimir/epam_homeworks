@@ -28,18 +28,15 @@ example_tree = {
 
 
 def find_occurrences(tree: dict, element: Any) -> int:
-    def counter(values, element):
-        element_counter = 0
-        for item in values:
-            if isinstance(item, (int, str, bool)):
-                element_counter += 1 if item is element else 0
-            elif not isinstance(item, dict):
-                element_counter += counter(item, element)
-            else:
-                element_counter += counter(item.values(), element)
-        return element_counter
-
-    return counter(tree.values(), element)
+    element_counter = 0
+    element_counter += 1 if tree == element else 0
+    if isinstance(tree, (set, tuple, list)):
+        for item in tree:
+            element_counter += find_occurrences(item, element)
+    elif isinstance(tree, dict):
+        for value in tree.values():
+            element_counter += find_occurrences(value, element)
+    return element_counter
 
 
 if __name__ == "__main__":
