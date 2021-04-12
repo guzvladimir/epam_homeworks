@@ -24,5 +24,5 @@ def universal_file_counter(
                 for line in file.readlines():
                     count_lines_tokens += len(tokenizer(line))
             else:
-                count_lines_tokens += sum(1 for _ in file.readlines())
+                count_lines_tokens += len(file.readlines())
     return count_lines_tokens
