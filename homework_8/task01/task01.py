@@ -24,6 +24,7 @@ File size is expected to be small, you are permitted to read it entirely into me
 
 
 from keyword import iskeyword
+from typing import Union
 
 
 class KeyValueStorage:
@@ -38,8 +39,14 @@ class KeyValueStorage:
                 value = int(value) if value.isnumeric() else value
                 self.storage[key] = value
 
-    def __getitem__(self, item):
-        return self.storage[item]
+    def __getitem__(self, item: str) -> Union[str, int]:
+        if item in self.storage:
+            return self.storage[item]
+        return self.__getattribute__(item)
 
-    def __getattr__(self, item):
+    def __getattr__(self, item: str) -> Union[str, int]:
+        try:
+            self.storage[item]
+        except KeyError:
+            raise AttributeError
         return self.storage[item]
