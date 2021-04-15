@@ -1,0 +1,3 @@
+name=pushkin
+!last_name=top
+def=error
