@@ -1,0 +1,52 @@
+[
+    {
+        "code": "TSLA",
+        "name": "Tesla",
+        "growth": 401.64
+    },
+    {
+        "code": "LB",
+        "name": "L Brands",
+        "growth": 367.02
+    },
+    {
+        "code": "FCX",
+        "name": "Freeport-McMoRan",
+        "growth": 361.21
+    },
+    {
+        "code": "ENPH",
+        "name": "Enphase Energy",
+        "growth": 350.68
+    },
+    {
+        "code": "GPS",
+        "name": "Gap",
+        "growth": 342.19
+    },
+    {
+        "code": "ALGN",
+        "name": "Align Technology",
+        "growth": 223.63
+    },
+    {
+        "code": "EXPE",
+        "name": "Expedia",
+        "growth": 209.15
+    },
+    {
+        "code": "MGM",
+        "name": "MGM Resorts International",
+        "growth": 205.14
+    },
+    {
+        "code": "MRO",
+        "name": "Marathon Oil",
+        "growth": 203.53
+    },
+    {
+        "code": "NWSA",
+        "name": "News",
+        "growth": 202.16
+    }
+]
