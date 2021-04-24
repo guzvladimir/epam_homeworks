@@ -28,29 +28,30 @@ assert order_1.final_price() == 50
 order_2 = Order(100, elder_discount)
 assert order_1.final_price() == 10
 """
+from __future__ import annotations
 
 from abc import ABC, abstractmethod
 
 
 class BaseStrategy(ABC):
     @abstractmethod
-    def final_price(self) -> float:
+    def discount_price(self, order: Order) -> float:
         pass
 
 
 class NoDiscount(BaseStrategy):
-    def final_price(self) -> float:
-        return self.price
+    def discount_price(order: Order) -> float:
+        return 0
 
 
 class MorningDiscount(BaseStrategy):
-    def final_price(self) -> float:
-        return self.price * 0.5
+    def discount_price(order: Order) -> float:
+        return order.price * 0.5
 
 
 class ElderDiscount(BaseStrategy):
-    def final_price(self) -> float:
-        return self.price * 0.1
+    def discount_price(order: Order) -> float:
+        return order.price * 0.9
 
 
 class Order:
@@ -58,5 +59,13 @@ class Order:
         self.price = price
         self._discount_strategy = discount_strategy
 
+    @property
+    def discount_strategy(self) -> BaseStrategy:
+        return self._discount_strategy
+
+    @discount_strategy.setter
+    def discount_strategy(self, discount_strategy: BaseStrategy):
+        self._discount_strategy = discount_strategy
+
     def final_price(self) -> float:
-        return self._discount_strategy.final_price(self)
+        return self.price - self._discount_strategy.discount_price(self)
