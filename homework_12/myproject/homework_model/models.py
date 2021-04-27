@@ -11,32 +11,35 @@ class Person(models.Model):
     def __str__(self) -> str:
         return f"{self.first_name} {self.last_name}"
 
+    class Meta:
+        abstract = True
+
 
 class Student(Person):
-    db_table = "Student"
+    db_table = "students"
 
 
 class Teacher(Person):
-    db_table = "Teacher"
+    db_table = "teachers"
 
 
 class Homework(models.Model):
-    db_table = "Homework"
+    db_table = "homeworks"
     text = models.TextField()
     deadline = models.DateTimeField()
     created = models.DateTimeField()
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
 
-    def __str__(self) -> TextField:
+    def __str__(self) -> str:
         return self.text
 
 
 class HomeworkResult(models.Model):
-    db_table = "Homework_Result"
+    db_table = "homework_results"
     homework = models.ForeignKey(Homework, on_delete=models.CASCADE)
     solution = models.TextField()
     author = models.ForeignKey(Student, on_delete=models.CASCADE)
     created = models.DateTimeField()
 
-    def __str__(self) -> TextField:
+    def __str__(self) -> str:
         return self.solution
